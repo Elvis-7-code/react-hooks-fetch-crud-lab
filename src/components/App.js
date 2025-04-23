@@ -34,6 +34,12 @@ function handleUpdate(updatedQuestion){
   setQuestions(updatedQuestions);
 }
 
+function handleDeleteQuestion(id){
+  const updatedQuestions = questions.filter((questions)=>questions.id! == id);
+  setQuestions(updatedQuestions);
+}
+
+
   return (
     <main>
       <AdminNavBar onChangePage={setPage} />
