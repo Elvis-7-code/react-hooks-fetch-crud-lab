@@ -5,6 +5,13 @@ import QuestionList from "./QuestionList";
 
 function App() {
   const [page, setPage] = useState("List");
+  const [questions, setQuestions] = useState([]);
+  const fetchingQuestions = () => {
+    fetch ("http://localhost:4000/questions"
+      .then((r) => r.json())
+      .then((questions)=> setQuestions(questions));
+    )
+  };
 
   return (
     <main>
