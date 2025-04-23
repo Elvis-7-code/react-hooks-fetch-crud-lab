@@ -22,6 +22,18 @@ function CreateQuestion(question){
   setQuestions([...questions, question]);
 }
 
+function handleUpdate(updatedQuestion){
+  const updatedQuestions =
+  questions.map((question)=>{
+    if (question.id === updatedQuestion.id){
+      return updatedQuestion;
+    }else{
+      return question;
+    }
+  });
+  setQuestions(updatedQuestions);
+}
+
   return (
     <main>
       <AdminNavBar onChangePage={setPage} />
