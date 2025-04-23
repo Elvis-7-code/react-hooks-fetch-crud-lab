@@ -17,6 +17,11 @@ function App() {
     fetchingQuestions();
 },[]);
 
+function CreateQuestion(question){
+  setPage("Content")
+  setQuestions([...questions, question]);
+}
+
   return (
     <main>
       <AdminNavBar onChangePage={setPage} />
