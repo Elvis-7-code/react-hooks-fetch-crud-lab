@@ -3,14 +3,14 @@ import React from "react";
 function QuestionItem({ question, onDeleteQuestion, onUpdateQuestion }) {
   const { id, prompt, answers, index } = question;
 
-  const options = answers.map((answer, index) => (
-    <option key={index} value={index}>
+  const options = answers.map((answer, idx) => (
+    <option key={idx} value={idx}>
       {answer}
     </option>
   ));
 
-  function onDefault(e) {
-    fetch(http://localhost:4000/questions/${question.id}, {
+  function handleAnswerChange(e) {
+    fetch(`http://localhost:4000/questions/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -20,15 +20,15 @@ function QuestionItem({ question, onDeleteQuestion, onUpdateQuestion }) {
       }),
     })
       .then((r) => r.json())
-      .then((ThisIsAnUpdate) => onUpdateQuestion(ThisIsAnUpdate));
+      .then((updatedQuestion) => onUpdateQuestion(updatedQuestion));
   }
 
   function handleDeleteClick() {
-    fetch(http://localhost:4000/questions/${question.id}, {
+    fetch(`http://localhost:4000/questions/${id}`, {
       method: "DELETE",
     })
       .then((r) => r.json())
-      .then(() => onDeleteQuestion(question.id));
+      .then(() => onDeleteQuestion(id));
   }
 
   return (
@@ -37,10 +37,7 @@ function QuestionItem({ question, onDeleteQuestion, onUpdateQuestion }) {
       <h5>Prompt: {prompt}</h5>
       <label>
         Correct Answer:
-        <select
-          defaultValue={index}
-          onChange={onDefault}
-        >
+        <select defaultValue={index} onChange={handleAnswerChange}>
           {options}
         </select>
       </label>
@@ -48,4 +45,5 @@ function QuestionItem({ question, onDeleteQuestion, onUpdateQuestion }) {
     </li>
   );
 }
+
 export default QuestionItem;
