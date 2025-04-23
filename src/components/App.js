@@ -40,12 +40,21 @@ function handleDeleteQuestion(id){
 }
 
 
-  return (
-    <main>
-      <AdminNavBar onChangePage={setPage} />
-      {page === "Form" ? <QuestionForm /> : <QuestionList />}
-    </main>
-  );
+return (
+  <main>
+    <AdminNavBar onChangePage={setPage} />
+    {page === "Form" ? (
+      <QuestionForm onAddQuestion={CreateQuestion} />
+    ) : (
+      <QuestionList
+        questions={questions}
+        onDeleteQuestion={handleDeleteQuestion}
+        onUpdateQuestion={handleUpdate}
+      />
+    )}
+  </main>
+);
 }
+
 
 export default App;
